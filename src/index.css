@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 25 16% 5%;
+    --foreground: 40 38% 90%;
+    --card: 25 12% 7%;
+    --card-foreground: 40 38% 90%;
+    --popover: 25 12% 7%;
+    --popover-foreground: 40 38% 90%;
+    --primary: 16 50% 52%;
+    --primary-foreground: 40 40% 96%;
+    --secondary: 25 10% 11%;
+    --secondary-foreground: 40 38% 90%;
+    --muted: 25 10% 11%;
+    --muted-foreground: 40 14% 52%;
+    --accent: 16 45% 45%;
+    --accent-foreground: 40 40% 96%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 40 40% 96%;
+    --border: 40 14% 18%;
+    --input: 40 14% 18%;
+    --ring: 16 50% 52%;
+    --terracotta: 16 50% 52%;
+    --parchment: 40 38% 90%;
+    --chart-1: 16 50% 52%;
+    --chart-2: 28 40% 48%;
+    --chart-3: 40 30% 60%;
+    --chart-4: 12 45% 42%;
+    --chart-5: 35 35% 55%;
+    --radius: 0.25rem;
+    --font-heading: ui-serif, Georgia, "Times New Roman", serif;
+    --font-body: ui-serif, Georgia, "Times New Roman", serif;
+    --font-display: ui-serif, Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    --sidebar-background: 25 16% 5%;
+    --sidebar-foreground: 40 38% 90%;
+    --sidebar-primary: 16 50% 52%;
+    --sidebar-primary-foreground: 40 40% 96%;
+    --sidebar-accent: 25 10% 11%;
+    --sidebar-accent-foreground: 40 38% 90%;
+    --sidebar-border: 40 14% 18%;
+    --sidebar-ring: 16 50% 52%;
+  }
+
+  .dark {
+    --background: 25 16% 5%;
+    --foreground: 40 38% 90%;
+    --card: 25 12% 7%;
+    --card-foreground: 40 38% 90%;
+    --popover: 25 12% 7%;
+    --popover-foreground: 40 38% 90%;
+    --primary: 16 50% 52%;
+    --primary-foreground: 40 40% 96%;
+    --secondary: 25 10% 11%;
+    --secondary-foreground: 40 38% 90%;
+    --muted: 25 10% 11%;
+    --muted-foreground: 40 14% 52%;
+    --accent: 16 45% 45%;
+    --accent-foreground: 40 40% 96%;
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 40 40% 96%;
+    --border: 40 14% 18%;
+    --input: 40 14% 18%;
+    --ring: 16 50% 52%;
+    --terracotta: 16 50% 52%;
+    --parchment: 40 38% 90%;
+    --chart-1: 16 50% 52%;
+    --chart-2: 28 40% 48%;
+    --chart-3: 40 30% 60%;
+    --chart-4: 12 45% 42%;
+    --chart-5: 35 35% 55%;
+    --sidebar-background: 25 16% 5%;
+    --sidebar-foreground: 40 38% 90%;
+    --sidebar-primary: 16 50% 52%;
+    --sidebar-primary-foreground: 40 40% 96%;
+    --sidebar-accent: 25 10% 11%;
+    --sidebar-accent-foreground: 40 38% 90%;
+    --sidebar-border: 40 14% 18%;
+    --sidebar-ring: 16 50% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image:
+      linear-gradient(hsl(25 16% 5% / 0.88), hsl(25 16% 5% / 0.88)),
+      url('https://media.base44.com/images/public/6ac9e35d279279bb6e220b96/f5b7d8afc_image.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: hsl(var(--terracotta) / 0.25);
+    color: hsl(var(--parchment));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .hairline {
+    border-color: rgb(255 255 255 / 0.08);
+  }
+}
