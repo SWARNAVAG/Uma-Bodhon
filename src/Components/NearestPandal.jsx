@@ -1,11 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { MapPin, Footprints, MapPinOff, Toilet, ChevronDown, ChevronUp } from 'lucide-react';
+import { MapPin, Footprints, MapPinOff, ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 import { PANDALS, haversineKm, formatDistance, walkMinutes } from '@/lib/pandals';
 import useUserLocation from '@/hooks/useUserLocation';
-
-const KOLKATA_LAT = 22.5726;
-const KOLKATA_LNG = 88.3639;
 
 export default function NearestPandal() {
   const { location, geoState } = useUserLocation();
@@ -17,12 +14,6 @@ export default function NearestPandal() {
         return { ...p, km };
       }).sort((a, b) => a.km - b.km).slice(0, 5)
     : [];
-
-  const getToiletMapsUrl = () => {
-    const lat = location?.lat ?? KOLKATA_LAT;
-    const lng = location?.lng ?? KOLKATA_LNG;
-    return `https://www.google.com/maps/search/public+toilet/@${lat},${lng},15z`;
-  };
 
   const renderPandalItem = (pandal, index) => (
     <motion.div
@@ -105,17 +96,6 @@ export default function NearestPandal() {
               )}
             </button>
           )}
-
-          <a
-            href={getToiletMapsUrl()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center justify-center gap-2 rounded-lg border border-terracotta/30 bg-terracotta/10 px-4 py-2.5 text-sm font-medium text-terracotta hover:bg-terracotta/20 transition-colors"
-            aria-label="Find nearby public toilets on Google Maps"
-          >
-            <Toilet className="h-4 w-4" strokeWidth={1.5} />
-            Find Public Toilets
-          </a>
         </>
       )}
     </div>

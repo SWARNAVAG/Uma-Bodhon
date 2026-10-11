@@ -7,6 +7,7 @@ import PandalGuide from '@/Components/PandalGuide';
 import DeveloperFooter from '@/Components/DeveloperFooter';
 import LiveUserCount from '@/Components/LiveUserCount';
 import WeatherWidget from '@/Components/WeatherWidget';
+import PublicToiletButton from '@/Components/PublicToiletButton';
 
 export default function Home() {
   return (
@@ -56,6 +57,10 @@ export default function Home() {
           </section>
         </div>
       </motion.main>
+
+      <div className="px-6 pb-8 sm:px-10 lg:px-16">
+        <PublicToiletButton />
+      </div>
 
       <DeveloperFooter />
     </div>
