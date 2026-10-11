@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Pause, SkipBack, SkipForward } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, Repeat, Repeat1 } from 'lucide-react';
 import { TRACKS, PLAYLIST_URL, PLAYLIST_TITLE, PLAYLIST_OWNER, PLAYLIST_TOTAL } from '@/lib/playlist';
 
 const BARS = Array.from({ length: 14 });
@@ -9,6 +9,7 @@ export default function MusicPlayer() {
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
   const [current, setCurrent] = useState(0);
+  const [repeatMode, setRepeatMode] = useState('off'); // 'off', 'one', 'all'
   const playerRef = useRef(null);
   const holderRef = useRef(null);
 
@@ -25,9 +26,21 @@ export default function MusicPlayer() {
           onStateChange: (e) => {
             setPlaying(e.data === 1);
             if (e.data === 0) {
-              const next = (currentRef.current + 1) % TRACKS.length;
-              setCurrent(next);
-              playerRef.current?.loadVideoById?.(TRACKS[next].videoId);
+              if (repeatMode === 'one') {
+                // Repeat current track
+                playerRef.current?.loadVideoById?.(TRACKS[currentRef.current].videoId);
+              } else {
+                // Move to next track
+                const next = (currentRef.current + 1) % TRACKS.length;
+                if (next === 0 && repeatMode === 'off') {
+                  // End of playlist, stop if repeat is off
+                  setPlaying(false);
+                  setStarted(false);
+                  return;
+                }
+                setCurrent(next);
+                playerRef.current?.loadVideoById?.(TRACKS[next].videoId);
+              }
             }
           },
         },
@@ -56,7 +69,7 @@ export default function MusicPlayer() {
       }
       playerRef.current = null;
     };
-  }, []);
+  }, [repeatMode]);
 
   const currentRef = useRef(0);
   currentRef.current = current;
@@ -81,6 +94,14 @@ export default function MusicPlayer() {
     } else {
       p.playVideo();
     }
+  };
+
+  const cycleRepeatMode = () => {
+    setRepeatMode(prev => {
+      if (prev === 'off') return 'all';
+      if (prev === 'all') return 'one';
+      return 'off';
+    });
   };
 
   const track = TRACKS[current];
@@ -134,6 +155,19 @@ export default function MusicPlayer() {
           className="shrink-0 text-muted-foreground/50 transition-colors hover:text-terracotta"
         >
           <SkipBack className="h-3.5 w-3.5" strokeWidth={1.25} />
+        </button>
+        <button
+          onClick={cycleRepeatMode}
+          aria-label={`Repeat: ${repeatMode === 'off' ? 'off' : repeatMode === 'all' ? 'all' : 'one'}`}
+          className={`shrink-0 transition-colors hover:text-terracotta ${
+            repeatMode !== 'off' ? 'text-terracotta' : 'text-muted-foreground/50'
+          }`}
+        >
+          {repeatMode === 'one' ? (
+            <Repeat1 className="h-3.5 w-3.5" strokeWidth={1.25} />
+          ) : (
+            <Repeat className="h-3.5 w-3.5" strokeWidth={1.25} />
+          )}
         </button>
         <button
           onClick={() => playTrack((current + 1) % TRACKS.length)}
