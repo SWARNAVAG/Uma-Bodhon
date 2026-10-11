@@ -105,6 +105,38 @@
   }
 }
 
+/* Custom scrollbar for helpline board */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--terracotta) / 0.3) hsl(25 16% 5% / 0.3);
+  }
+  .scrollbar-track-white\/5::-webkit-scrollbar-track {
+    background: hsl(25 16% 5% / 0.3);
+  }
+  .scrollbar-thumb-terracotta\/30::-webkit-scrollbar-thumb {
+    background: hsl(var(--terracotta) / 0.3);
+    border-radius: 4px;
+  }
+  .hover\:scrollbar-thumb-terracotta\/50:hover::-webkit-scrollbar-thumb {
+    background: hsl(var(--terracotta) / 0.5);
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(25 16% 5% / 0.3);
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--terracotta) / 0.3);
+    border-radius: 4px;
+  }
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background: hsl(var(--terracotta) / 0.5);
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
