@@ -2,7 +2,220 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ========================================
+   THEME: Durga Puja 2026 — "Sindoor & Gold"
+   ========================================
+   Original theme preserved in comments below.
+   To revert: replace :root/.dark values with the
+   commented "ORIGINAL" block at the bottom.
+   ======================================== */
+
 @layer base {
+  :root {
+    /* --- NEW: Sindoor & Gold Theme --- */
+    --background: 22 18% 4%;           /* Deep charcoal-black with warm undertone */
+    --foreground: 42 45% 94%;          /* Warm aged parchment */
+    --card: 24 15% 6%;                 /* Slightly elevated surface */
+    --card-foreground: 42 45% 94%;
+    --popover: 24 15% 6%;
+    --popover-foreground: 42 45% 94%;
+
+    --primary: 14 85% 50%;             /* Vibrant Sindoor vermillion */
+    --primary-foreground: 42 50% 98%;
+    --secondary: 28 12% 10%;           /* Warm dark surface */
+    --secondary-foreground: 42 35% 88%;
+    --muted: 28 10% 10%;
+    --muted-foreground: 38 15% 58%;
+    --accent: 38 65% 52%;              /* Deep golden saffron */
+    --accent-foreground: 22 20% 4%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 42 50% 98%;
+    --border: 32 12% 16%;
+    --input: 32 12% 16%;
+    --ring: 14 85% 50%;
+
+    --terracotta: 14 85% 50%;          /* Maps to primary — Sindoor */
+    --sindoor: 14 85% 50%;             /* Explicit alias */
+    --parchment: 42 45% 94%;
+    --gold: 38 65% 52%;                /* Deep saffron gold */
+    --gold-light: 42 70% 68%;          /* Bright highlight gold */
+    --saffron: 28 80% 55%;             /* Saffron orange */
+    --marigold: 40 90% 58%;            /* Marigold flower */
+    --deep-red: 355 75% 42%;           /* Deep red for accents */
+    --temple-gold: 45 85% 55%;         /* Temple jewelry gold */
+
+    --chart-1: 14 85% 50%;
+    --chart-2: 38 65% 52%;
+    --chart-3: 28 80% 55%;
+    --chart-4: 45 85% 55%;
+    --chart-5: 355 75% 42%;
+
+    --radius: 0.25rem;
+    --font-heading: "Noto Serif Bengali", ui-serif, Georgia, "Times New Roman", serif;
+    --font-body: "Noto Serif", ui-serif, Georgia, "Times New Roman", serif;
+    --font-display: "Noto Serif Bengali", ui-serif, Georgia, "Times New Roman", serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    --sidebar-background: 22 18% 4%;
+    --sidebar-foreground: 42 45% 94%;
+    --sidebar-primary: 14 85% 50%;
+    --sidebar-primary-foreground: 42 50% 98%;
+    --sidebar-accent: 28 12% 10%;
+    --sidebar-accent-foreground: 42 35% 88%;
+    --sidebar-border: 32 12% 16%;
+    --sidebar-ring: 14 85% 50%;
+  }
+
+  .dark {
+    /* Dark mode uses same values (already dark-first) */
+    --background: 22 18% 4%;
+    --foreground: 42 45% 94%;
+    --card: 24 15% 6%;
+    --card-foreground: 42 45% 94%;
+    --popover: 24 15% 6%;
+    --popover-foreground: 42 45% 94%;
+    --primary: 14 85% 50%;
+    --primary-foreground: 42 50% 98%;
+    --secondary: 28 12% 10%;
+    --secondary-foreground: 42 35% 88%;
+    --muted: 28 10% 10%;
+    --muted-foreground: 38 15% 58%;
+    --accent: 38 65% 52%;
+    --accent-foreground: 22 20% 4%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 42 50% 98%;
+    --border: 32 12% 16%;
+    --input: 32 12% 16%;
+    --ring: 14 85% 50%;
+    --terracotta: 14 85% 50%;
+    --sindoor: 14 85% 50%;
+    --parchment: 42 45% 94%;
+    --gold: 38 65% 52%;
+    --gold-light: 42 70% 68%;
+    --saffron: 28 80% 55%;
+    --marigold: 40 90% 58%;
+    --deep-red: 355 75% 42%;
+    --temple-gold: 45 85% 55%;
+    --chart-1: 14 85% 50%;
+    --chart-2: 38 65% 52%;
+    --chart-3: 28 80% 55%;
+    --chart-4: 45 85% 55%;
+    --chart-5: 355 75% 42%;
+    --sidebar-background: 22 18% 4%;
+    --sidebar-foreground: 42 45% 94%;
+    --sidebar-primary: 14 85% 50%;
+    --sidebar-primary-foreground: 42 50% 98%;
+    --sidebar-accent: 28 12% 10%;
+    --sidebar-accent-foreground: 42 35% 88%;
+    --sidebar-border: 32 12% 16%;
+    --sidebar-ring: 14 85% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, hsl(14 85% 50% / 0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, hsl(38 65% 52% / 0.06), transparent),
+      linear-gradient(hsl(22 18% 4% / 0.92), hsl(22 18% 4% / 0.92)),
+      url('https://media.base44.com/images/public/6ac9e35d279279bb6e220b96/f5b7d8afc_image.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: hsl(var(--sindoor) / 0.35);
+    color: hsl(var(--parchment));
+  }
+
+  /* Subtle text glow for headings */
+  .text-glow {
+    text-shadow: 0 0 30px hsl(var(--sindoor) / 0.25);
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 30px hsl(var(--gold) / 0.3);
+  }
+}
+
+/* Custom scrollbar */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--sindoor) / 0.4) hsl(22 18% 4% / 0.4);
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: hsl(22 18% 4% / 0.4);
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--sindoor) / 0.4);
+    border-radius: 4px;
+  }
+  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
+    background: hsl(var(--sindoor) / 0.6);
+  }
+}
+
+/* Gradient text utilities */
+@layer utilities {
+  .text-gradient-sindoor {
+    @apply bg-gradient-to-r from-[hsl(var(--sindoor))] to-[hsl(var(--marigold))] bg-clip-text text-transparent;
+  }
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-[hsl(var(--gold))] to-[hsl(var(--gold-light))] bg-clip-text text-transparent;
+  }
+  .text-gradient-saffron {
+    @apply bg-gradient-to-r from-[hsl(var(--saffron))] to-[hsl(var(--marigold))] bg-clip-text text-transparent;
+  }
+
+  /* Border gradients */
+  .border-gradient-sindoor {
+    border-image-source: linear-gradient(135deg, hsl(var(--sindoor)), hsl(var(--marigold)));
+    border-image-slice: 1;
+  }
+  .border-gradient-gold {
+    border-image-source: linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)));
+    border-image-slice: 1;
+  }
+
+  /* Background gradients */
+  .bg-gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--sindoor) / 0.15), hsl(var(--gold) / 0.1), transparent);
+  }
+  .bg-gradient-card {
+    background: linear-gradient(145deg, hsl(var(--card)), hsl(var(--secondary)));
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+  .hairline {
+    border-color: rgb(255 255 255 / 0.06);
+  }
+}
+
+/* Focus visible for accessibility */
+@layer base {
+  *:focus-visible {
+    outline: 2px solid hsl(var(--sindoor));
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================
+   ORIGINAL THEME (for easy revert)
+   ========================================
   :root {
     --background: 25 16% 5%;
     --foreground: 40 38% 90%;
@@ -44,104 +257,7 @@
     --sidebar-border: 40 14% 18%;
     --sidebar-ring: 16 50% 52%;
   }
-
-  .dark {
-    --background: 25 16% 5%;
-    --foreground: 40 38% 90%;
-    --card: 25 12% 7%;
-    --card-foreground: 40 38% 90%;
-    --popover: 25 12% 7%;
-    --popover-foreground: 40 38% 90%;
-    --primary: 16 50% 52%;
-    --primary-foreground: 40 40% 96%;
-    --secondary: 25 10% 11%;
-    --secondary-foreground: 40 38% 90%;
-    --muted: 25 10% 11%;
-    --muted-foreground: 40 14% 52%;
-    --accent: 16 45% 45%;
-    --accent-foreground: 40 40% 96%;
-    --destructive: 0 62% 40%;
-    --destructive-foreground: 40 40% 96%;
-    --border: 40 14% 18%;
-    --input: 40 14% 18%;
-    --ring: 16 50% 52%;
-    --terracotta: 16 50% 52%;
-    --parchment: 40 38% 90%;
-    --chart-1: 16 50% 52%;
-    --chart-2: 28 40% 48%;
-    --chart-3: 40 30% 60%;
-    --chart-4: 12 45% 42%;
-    --chart-5: 35 35% 55%;
-    --sidebar-background: 25 16% 5%;
-    --sidebar-foreground: 40 38% 90%;
-    --sidebar-primary: 16 50% 52%;
-    --sidebar-primary-foreground: 40 40% 96%;
-    --sidebar-accent: 25 10% 11%;
-    --sidebar-accent-foreground: 40 38% 90%;
-    --sidebar-border: 40 14% 18%;
-    --sidebar-ring: 16 50% 52%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground font-body antialiased;
-    background-image:
-      linear-gradient(hsl(25 16% 5% / 0.88), hsl(25 16% 5% / 0.88)),
-      url('https://media.base44.com/images/public/6ac9e35d279279bb6e220b96/f5b7d8afc_image.png');
-    background-size: cover;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-
-  ::selection {
-    background: hsl(var(--terracotta) / 0.25);
-    color: hsl(var(--parchment));
-  }
-}
-
-/* Custom scrollbar for helpline board */
-@layer utilities {
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--terracotta) / 0.3) hsl(25 16% 5% / 0.3);
-  }
-  .scrollbar-track-white\/5::-webkit-scrollbar-track {
-    background: hsl(25 16% 5% / 0.3);
-  }
-  .scrollbar-thumb-terracotta\/30::-webkit-scrollbar-thumb {
-    background: hsl(var(--terracotta) / 0.3);
-    border-radius: 4px;
-  }
-  .hover\:scrollbar-thumb-terracotta\/50:hover::-webkit-scrollbar-thumb {
-    background: hsl(var(--terracotta) / 0.5);
-  }
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: hsl(25 16% 5% / 0.3);
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: hsl(var(--terracotta) / 0.3);
-    border-radius: 4px;
-  }
-  .scrollbar-thin:hover::-webkit-scrollbar-thumb {
-    background: hsl(var(--terracotta) / 0.5);
-  }
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  .hairline {
-    border-color: rgb(255 255 255 / 0.08);
-  }
-}
+  .dark { /* same values *\/ }
+  body { background-image: linear-gradient(hsl(25 16% 5% / 0.88), hsl(25 16% 5% / 0.88)), url('...'); }
+  ::selection { background: hsl(var(--terracotta) / 0.25); color: hsl(var(--parchment)); }
+   ======================================== */
