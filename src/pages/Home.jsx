@@ -9,6 +9,7 @@ import LiveUserCount from '@/Components/LiveUserCount';
 import WeatherWidget from '@/Components/WeatherWidget';
 import PublicToiletButton from '@/Components/PublicToiletButton';
 import HelplineBoard from '@/Components/HelplineBoard';
+import SearchBar from '@/Components/SearchBar';
 
 export default function Home() {
   return (
@@ -16,6 +17,15 @@ export default function Home() {
       <LiveUserCount />
 
       <DailyHeading />
+
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, delay: 0.5, ease: 'easeOut' }}
+        className="px-6 pb-6 sm:px-10 lg:px-16"
+      >
+        <SearchBar />
+      </motion.div>
 
       {/* Countdown — directly below the main heading */}
       <motion.section
