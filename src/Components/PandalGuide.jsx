@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPinOff } from 'lucide-react';
 import { PANDALS, ZONES, haversineKm, formatDistance, walkMinutes } from '@/lib/pandals';
-import PandalRow from '@/components/PandalRow';
+import PandalRow from '@/Components/PandalRow';
 import useUserLocation from '@/hooks/useUserLocation';
 
 export default function PandalGuide() {

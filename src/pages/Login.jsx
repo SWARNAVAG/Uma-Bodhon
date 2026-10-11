@@ -5,8 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LogIn, Mail, Lock, Loader2 } from "lucide-react";
-import AuthLayout from "@/components/AuthLayout";
-import GoogleIcon from "@/components/GoogleIcon";
+import AuthLayout from '@/Components/AuthLayout';
+import GoogleIcon from '@/Components/GoogleIcon';
 import { safeReturnTo } from "@/lib/authReturnTo";
 
 export default function Login() {

@@ -1,11 +1,11 @@
 import { motion } from 'framer-motion';
-import DailyHeading from '@/components/DailyHeading';
-import Countdown from '@/components/Countdown';
-import MusicPlayer from '@/components/MusicPlayer';
-import NearestPandal from '@/components/NearestPandal';
-import PandalGuide from '@/components/PandalGuide';
-import DeveloperFooter from '@/components/DeveloperFooter';
-import LiveUserCount from '@/components/LiveUserCount';
+import DailyHeading from '@/Components/DailyHeading';
+import Countdown from '@/Components/Countdown';
+import MusicPlayer from '@/Components/MusicPlayer';
+import NearestPandal from '@/Components/NearestPandal';
+import PandalGuide from '@/Components/PandalGuide';
+import DeveloperFooter from '@/Components/DeveloperFooter';
+import LiveUserCount from '@/Components/LiveUserCount';
 
 export default function Home() {
   return (

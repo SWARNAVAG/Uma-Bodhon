@@ -4,6 +4,12 @@ import { base44 } from '@/api/base44Client';
 
 const ROOM_ID = 'devi-paksha-live';
 
+/**
+ * @typedef {Object} PresenceMessage
+ * @property {string} type
+ * @property {number} count
+ */
+
 export default function LiveUserCount() {
   const [count, setCount] = useState(1);
 
@@ -15,9 +21,10 @@ export default function LiveUserCount() {
       sessionStorage.setItem('presence-conn-id', connId);
     }
     const room = base44.actors.PresenceRoom(ROOM_ID).connect({ id: connId });
-    const sub = room.subscribe((msg) => {
-      if (msg && msg.type === 'presence' && typeof msg.count === 'number') {
-        setCount(msg.count);
+    const sub = room.subscribe((/** @type {unknown} */ msg) => {
+      const presenceMsg = /** @type {PresenceMessage} */ (msg);
+      if (presenceMsg && presenceMsg.type === 'presence' && typeof presenceMsg.count === 'number') {
+        setCount(presenceMsg.count);
       }
     });
     return () => {
