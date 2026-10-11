@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Footprints, Navigation2, Users, Users2 } from 'lucide-react';
+import { MapPin, Footprints, Navigation2 } from 'lucide-react';
 
 export default function PandalRow({ pandal, index, distance, walk, crowdLevel, crowdStatus }) {
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${pandal.lat},${pandal.lng}`;
@@ -20,7 +20,7 @@ export default function PandalRow({ pandal, index, distance, walk, crowdLevel, c
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: Math.min(index * 0.04, 0.5) + 0.3, type: 'spring', stiffness: 300, damping: 20 }}
-              className={`flex items-center gap-1 px-1.5 py-0.5 sm:px-2 rounded-full text-[8px] sm:text-[9px] font-medium uppercase tracking-[0.1em] transition-all duration-500 shrink-0 ${
+              className={`flex items-center gap-0.5 px-1.5 py-0.5 sm:px-2 rounded-full text-[7px] sm:text-[8px] font-medium tabular-nums transition-all duration-500 shrink-0 ${
                 isCrowded
                   ? 'bg-red-500/15 text-red-400 border border-red-500/30'
                   : 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
@@ -37,12 +37,7 @@ export default function PandalRow({ pandal, index, distance, walk, crowdLevel, c
                   <span className="absolute inset-0 h-1.5 w-1.5 rounded-full bg-red-400/30 animate-ping" />
                 )}
               </span>
-              {isCrowded ? (
-                <Users className="h-2.5 w-2.5 sm:h-3 sm:w-3" strokeWidth={2} aria-hidden="true" />
-              ) : (
-                <Users2 className="h-2.5 w-2.5 sm:h-3 sm:w-3" strokeWidth={2} aria-hidden="true" />
-              )}
-              <span className="tabular-nums">{crowdLevel}%</span>
+              <span>{crowdLevel}%</span>
             </motion.span>
           )}
         </div>
