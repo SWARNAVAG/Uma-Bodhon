@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion';
-import { MapPin, Footprints } from 'lucide-react';
+import { MapPin, Footprints, Navigation2 } from 'lucide-react';
 
 export default function PandalRow({ pandal, index, distance, walk }) {
+  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${pandal.lat},${pandal.lng}`;
+
   return (
     <motion.li
       initial={{ opacity: 0, y: 6 }}
@@ -24,6 +26,16 @@ export default function PandalRow({ pandal, index, distance, walk }) {
             </span>
           </div>
         </div>
+        <a
+          href={googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-terracotta/10 text-terracotta text-[10px] font-medium uppercase tracking-[0.18em] hover:bg-terracotta/20 transition-colors whitespace-nowrap shrink-0"
+          aria-label={`Open ${pandal.name} in Google Maps`}
+        >
+          <Navigation2 className="h-3.5 w-3.5" strokeWidth={1.25} />
+          Visit
+        </a>
       </div>
     </motion.li>
   );
