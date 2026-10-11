@@ -6,6 +6,7 @@ import NearestPandal from '@/Components/NearestPandal';
 import PandalGuide from '@/Components/PandalGuide';
 import DeveloperFooter from '@/Components/DeveloperFooter';
 import LiveUserCount from '@/Components/LiveUserCount';
+import WeatherWidget from '@/Components/WeatherWidget';
 
 export default function Home() {
   return (
@@ -33,13 +34,16 @@ export default function Home() {
         className="px-6 pb-8 sm:px-10 lg:px-16"
       >
         <div className="grid grid-cols-1 gap-px lg:grid-cols-2 lg:gap-16">
-          {/* Left — music & nearest pandal */}
+          {/* Left — music, weather & nearest pandal */}
           <section className="flex flex-col gap-12 lg:pr-12 lg:border-r lg:border-white/[0.06]">
             <div>
               <div className="mb-5 text-[10px] uppercase tracking-[0.3em] text-muted-foreground/70">
                 Pujo Radio
               </div>
               <MusicPlayer />
+            </div>
+            <div className="pb-4">
+              <WeatherWidget />
             </div>
             <div className="pb-4">
               <NearestPandal />
