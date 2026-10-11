@@ -4,10 +4,12 @@ import { MapPinOff } from 'lucide-react';
 import { PANDALS, ZONES, haversineKm, formatDistance, walkMinutes } from '@/lib/pandals';
 import PandalRow from '@/Components/PandalRow';
 import useUserLocation from '@/hooks/useUserLocation';
+import useCrowdSignal from '@/hooks/useCrowdSignal';
 
 export default function PandalGuide() {
   const [tab, setTab] = useState('nearby');
   const { location, geoState } = useUserLocation();
+  const { getCrowdLevel, getCrowdStatus } = useCrowdSignal();
 
   const nearby = location
     ? PANDALS.map((p) => {
@@ -78,6 +80,8 @@ export default function PandalGuide() {
                       : p.walk.replace(/^(\d+ min) from/, '$1 ·')
                   }
                   walk={tab === 'nearby' && location ? `${walkMinutes(p.km)} min walk` : p.walk}
+                  crowdLevel={getCrowdLevel(p.id)}
+                  crowdStatus={getCrowdStatus(p.id)}
                 />
               ))}
             </ul>

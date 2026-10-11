@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { MapPin, Footprints, Navigation2 } from 'lucide-react';
+import { MapPin, Footprints, Navigation2, Users, Users2 } from 'lucide-react';
 
-export default function PandalRow({ pandal, index, distance, walk }) {
+export default function PandalRow({ pandal, index, distance, walk, crowdLevel, crowdStatus }) {
   const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${pandal.lat},${pandal.lng}`;
+  const isCrowded = crowdStatus === 'crowded';
 
   return (
     <motion.li
@@ -12,19 +13,49 @@ export default function PandalRow({ pandal, index, distance, walk }) {
       className="py-4"
     >
       <div className="flex items-start justify-between gap-4">
-        <div className="min-w-0">
-          <h3 className="font-body text-[15px] text-foreground/90 truncate">{pandal.name}</h3>
-          <p className="mt-0.5 text-xs text-muted-foreground italic">{pandal.theme}</p>
-          <div className="mt-2 flex items-center gap-4 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
-            <span className="flex items-center gap-1">
-              <MapPin className="h-3 w-3" strokeWidth={1.25} />
-              {distance}
-            </span>
-            <span className="flex items-center gap-1">
-              <Footprints className="h-3 w-3" strokeWidth={1.25} />
-              {walk}
-            </span>
-          </div>
+        <div className="min-w-0 flex items-center gap-2">
+          <h3 className="font-body text-[15px] text-foreground/90 truncate pr-2">{pandal.name}</h3>
+          {typeof crowdLevel === 'number' && (
+            <motion.span
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: Math.min(index * 0.04, 0.5) + 0.3, type: 'spring', stiffness: 300, damping: 20 }}
+              className={`flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-medium uppercase tracking-[0.1em] transition-all duration-500 ${
+                isCrowded
+                  ? 'bg-red-500/15 text-red-400 border border-red-500/30'
+                  : 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+              }`}
+              title={isCrowded ? `Crowded (${crowdLevel}%)` : `Not Crowded (${crowdLevel}%)`}
+              aria-label={isCrowded ? `Crowded, ${crowdLevel} percent` : `Not crowded, ${crowdLevel} percent`}
+            >
+              <span
+                className={`relative flex h-1.5 w-1.5 rounded-full ${
+                  isCrowded ? 'bg-red-400 animate-pulse' : 'bg-emerald-400'
+                }`}
+              >
+                {isCrowded && (
+                  <span className="absolute inset-0 h-1.5 w-1.5 rounded-full bg-red-400/30 animate-ping" />
+                )}
+              </span>
+              {isCrowded ? (
+                <Users className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
+              ) : (
+                <Users2 className="h-3 w-3" strokeWidth={2} aria-hidden="true" />
+              )}
+              <span className="tabular-nums">{crowdLevel}%</span>
+            </motion.span>
+          )}
+        </div>
+        <p className="mt-0.5 text-xs text-muted-foreground italic">{pandal.theme}</p>
+        <div className="mt-2 flex items-center gap-4 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
+          <span className="flex items-center gap-1">
+            <MapPin className="h-3 w-3" strokeWidth={1.25} />
+            {distance}
+          </span>
+          <span className="flex items-center gap-1">
+            <Footprints className="h-3 w-3" strokeWidth={1.25} />
+            {walk}
+          </span>
         </div>
         <a
           href={googleMapsUrl}
