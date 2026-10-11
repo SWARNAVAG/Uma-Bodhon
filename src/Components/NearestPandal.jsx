@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { MapPin, Footprints, MapPinOff, RefreshCw } from 'lucide-react';
+import { MapPin, Footprints, MapPinOff } from 'lucide-react';
 import { PANDALS, haversineKm, formatDistance, walkMinutes } from '@/lib/pandals';
 import useUserLocation from '@/hooks/useUserLocation';
 
 export default function NearestPandal() {
-  const { location, geoState, refreshLocation } = useUserLocation();
+  const { location, geoState } = useUserLocation();
 
   const nearest = location
     ? PANDALS.map((p) => {
@@ -25,20 +25,7 @@ export default function NearestPandal() {
           <MapPinOff className="mt-0.5 h-3.5 w-3.5 shrink-0" strokeWidth={1.25} />
           {geoState === 'asking'
             ? 'Finding your location…'
-            : 'Location is off or unavailable. '}
-          {/* @ts-ignore */}
-          {(geoState === 'denied' || geoState === 'unavailable') && (
-            <button
-              onClick={refreshLocation}
-              // @ts-ignore
-              disabled={geoState === 'asking'}
-              className="flex items-center gap-1 ml-1 px-2 py-0.5 text-[10px] font-medium text-terracotta hover:text-terracotta/70 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-              aria-label="Retry location access"
-            >
-              <RefreshCw className="h-3 w-3" strokeWidth={1.5} />
-              Try again
-            </button>
-          )}
+            : 'Location is off or unavailable. Allow location access to see which pandal is closest to you.'}
         </p>
       ) : (
         <motion.div
