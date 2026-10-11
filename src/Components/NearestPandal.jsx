@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
-import { MapPin, Footprints, MapPinOff } from 'lucide-react';
+import { MapPin, Footprints, MapPinOff, Toilet } from 'lucide-react';
 import { PANDALS, haversineKm, formatDistance, walkMinutes } from '@/lib/pandals';
 import useUserLocation from '@/hooks/useUserLocation';
+
+const KOLKATA_LAT = 22.5726;
+const KOLKATA_LNG = 88.3639;
 
 export default function NearestPandal() {
   const { location, geoState } = useUserLocation();
@@ -12,6 +15,12 @@ export default function NearestPandal() {
         return { ...p, km };
       }).sort((a, b) => a.km - b.km)[0]
     : null;
+
+  const getToiletMapsUrl = () => {
+    const lat = location?.lat ?? KOLKATA_LAT;
+    const lng = location?.lng ?? KOLKATA_LNG;
+    return `https://www.google.com/maps/search/public+toilet/@${lat},${lng},15z`;
+  };
 
   return (
     <div>
@@ -28,25 +37,38 @@ export default function NearestPandal() {
             : 'Location is off or unavailable. Allow location access to see which pandal is closest to you.'}
         </p>
       ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 6 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="mt-5 border-l-2 border-terracotta/50 pl-4"
-        >
-          <h3 className="font-display text-xl text-foreground leading-snug">{nearest.name}</h3>
-          <p className="mt-1 text-xs text-muted-foreground italic">{nearest.theme}</p>
-          <div className="mt-3 flex items-center gap-4 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
-            <span className="flex items-center gap-1 text-terracotta/80">
-              <MapPin className="h-3 w-3" strokeWidth={1.25} />
-              {formatDistance(nearest.km)} away
-            </span>
-            <span className="flex items-center gap-1">
-              <Footprints className="h-3 w-3" strokeWidth={1.25} />
-              {walkMinutes(nearest.km)} min walk
-            </span>
-          </div>
-        </motion.div>
+        <>
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="mt-5 border-l-2 border-terracotta/50 pl-4"
+          >
+            <h3 className="font-display text-xl text-foreground leading-snug">{nearest.name}</h3>
+            <p className="mt-1 text-xs text-muted-foreground italic">{nearest.theme}</p>
+            <div className="mt-3 flex items-center gap-4 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/60">
+              <span className="flex items-center gap-1 text-terracotta/80">
+                <MapPin className="h-3 w-3" strokeWidth={1.25} />
+                {formatDistance(nearest.km)} away
+              </span>
+              <span className="flex items-center gap-1">
+                <Footprints className="h-3 w-3" strokeWidth={1.25} />
+                {walkMinutes(nearest.km)} min walk
+              </span>
+            </div>
+          </motion.div>
+
+          <a
+            href={getToiletMapsUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex items-center justify-center gap-2 rounded-lg border border-terracotta/30 bg-terracotta/10 px-4 py-2.5 text-sm font-medium text-terracotta hover:bg-terracotta/20 transition-colors"
+            aria-label="Find nearby public toilets on Google Maps"
+          >
+            <Toilet className="h-4 w-4" strokeWidth={1.5} />
+            Find Public Toilets
+          </a>
+        </>
       )}
     </div>
   );
