@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { base44 } from '@/api/base44Client';
+import { base44 } from '@/API/base44Client';
 
 const ROOM_ID = 'devi-paksha-live';
 

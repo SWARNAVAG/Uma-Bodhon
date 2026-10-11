@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { base44 } from '@/API/base44Client';
+import { Button } from "@/Components/UI/button";
+import { Input } from "@/Components/UI/input";
+import { Label } from "@/Components/UI/label";
 import { LogIn, Mail, Lock, Loader2 } from "lucide-react";
 import AuthLayout from '@/Components/AuthLayout';
 import GoogleIcon from '@/Components/GoogleIcon';

@@ -26,7 +26,7 @@ interface ImportMeta {
 }
 
 // UI Component type definitions
-declare module '@/components/ui/button' {
+declare module '@/Components/UI/button' {
   import * as React from 'react';
   
   export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -39,7 +39,7 @@ declare module '@/components/ui/button' {
   export const buttonVariants: any;
 }
 
-declare module '@/components/ui/input' {
+declare module '@/Components/UI/input' {
   import * as React from 'react';
   
   export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
@@ -47,7 +47,7 @@ declare module '@/components/ui/input' {
   export const Input: React.ForwardRefExoticComponent<InputProps & React.RefAttributes<HTMLInputElement>>;
 }
 
-declare module '@/components/ui/label' {
+declare module '@/Components/UI/label' {
   import * as React from 'react';
   
   export interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {}
@@ -55,7 +55,7 @@ declare module '@/components/ui/label' {
   export const Label: React.ForwardRefExoticComponent<LabelProps & React.RefAttributes<HTMLLabelElement>>;
 }
 
-declare module '@/components/ui/input-otp' {
+declare module '@/Components/UI/input-otp' {
   import * as React from 'react';
   import { OTPInput } from 'input-otp';
   
@@ -95,7 +95,7 @@ declare module '@/Components/AuthLayout' {
 }
 
 // Toast component types
-declare module '@/components/ui/toast' {
+declare module '@/Components/UI/toast' {
   import * as React from 'react';
   
   export const ToastProvider: React.ComponentType<any>;
@@ -105,4 +105,24 @@ declare module '@/components/ui/toast' {
   export const ToastClose: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLButtonElement> & React.RefAttributes<HTMLButtonElement>>;
   export const ToastTitle: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
   export const ToastDescription: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
+}
+
+declare module '@/Components/UI/use-toast' {
+  import * as React from 'react';
+  
+  export interface Toast {
+    id: string;
+    title?: React.ReactNode;
+    description?: React.ReactNode;
+    action?: React.ReactNode;
+    [key: string]: any;
+  }
+  
+  export function useToast(): {
+    toasts: Toast[];
+    toast: (props: Omit<Toast, 'id'>) => { id: string; dismiss: () => void; update: (props: Partial<Toast>) => void };
+    dismiss: (toastId?: string) => void;
+  };
+  
+  export function toast(props: Omit<Toast, 'id'>): { id: string; dismiss: () => void; update: (props: Partial<Toast>) => void };
 }
